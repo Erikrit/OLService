@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "erikrit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cordova": "^8.1.2",
+    "ionic": "^4.10.3"
+  }
+}

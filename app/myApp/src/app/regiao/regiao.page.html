@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>regiao</ion-title>
+    <ion-buttons (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div >
+    <div *ngFor="let p of array_cities">
+        <ion-item lines="none" > 
+      <ion-label>
+        {{p}}
+      </ion-label>
+        </ion-item>
+      </div>
+</div>
+
+</ion-content>

@@ -1,0 +1,92 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Categorias</ion-title>
+      <ion-buttons (click)="back()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding >
+  <ion-list>
+    <ion-item lines="none">
+    <ion-label (click)="Saude()" > Saude
+      </ion-label>
+      <ion-button fill="clear"(click)="Saude()" >
+          <ion-icon name="menu"></ion-icon>
+      </ion-button>
+    </ion-item>
+      <div *ngIf="saudeM" >
+        <div *ngFor="let p of saude">
+            <ion-item lines="none" [routerLink]="[p.url]"> 
+          <ion-label (click)="back()">
+            {{p.title}}
+          </ion-label>
+            </ion-item>
+          </div>
+    </div>
+  
+  </ion-list>
+
+  <ion-list>
+      <ion-item lines="none">
+      <ion-label (click)="construcaoF()" > Contrução
+        </ion-label>
+        <ion-button fill="clear"(click)="construcaoF()" >
+            <ion-icon name="menu"></ion-icon>
+        </ion-button>
+      </ion-item>
+        <div *ngIf="contru" >
+          <div *ngFor="let p of construcao">
+              <ion-item lines="none" (click)="back()" [routerLink]="[p.url]"> 
+            <ion-label>
+              {{p.title}}
+            </ion-label>
+              </ion-item>
+            </div>
+      </div>
+    
+    </ion-list>
+
+    <ion-list>
+        <ion-item lines="none">
+        <ion-label (click)="paraSucaCasaF()" > Para sua Casa
+          </ion-label>
+          <ion-button fill="clear"(click)="paraSucaCasaF()" >
+              <ion-icon name="menu"></ion-icon>
+          </ion-button>
+        </ion-item>
+          <div *ngIf="paraSuaC" >
+            <div *ngFor="let p of paraCasa">
+                <ion-item lines="none" [routerLink]="[p.url]"> 
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+                </ion-item>
+              </div>
+        </div>
+      
+      </ion-list>
+
+      <ion-list>
+          <ion-item lines="none">
+          <ion-label (click)="VeiculoF()" > Veiculo
+            </ion-label>
+            <ion-button fill="clear"(click)="VeiculoF()" >
+                <ion-icon name="menu"></ion-icon>
+            </ion-button>
+          </ion-item>
+            <div *ngIf="veiculos" >
+              <div *ngFor="let p of veiculo">
+                  <ion-item lines="none" [routerLink]="[p.url]"> 
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+                  </ion-item>
+                </div>
+          </div>
+        
+        </ion-list>
+      
+
+</ion-content>
