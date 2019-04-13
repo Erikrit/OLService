@@ -1,21 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>regiao</ion-title>
-    <ion-buttons (click)="back()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-buttons>
+      <ion-item lines="none">
+          <ion-buttons (click)="back()">
+              <ion-icon name="arrow-back"></ion-icon>
+      
+            </ion-buttons>
+            <ion-title class="title">Região</ion-title>
+          </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <div >
-    <div *ngFor="let p of array_cities">
+    <div>
         <ion-item lines="none" > 
       <ion-label>
-        {{p}}
+        {{teste}}
       </ion-label>
         </ion-item>
       </div>
 </div>
+<ion-button (click)='bonton()'>estando</ion-button>
 
 </ion-content>
