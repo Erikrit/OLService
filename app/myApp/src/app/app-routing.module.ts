@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'favoritos', loadChildren: './favoritos/favoritos.module#FavoritosPageModule' },
   { path: 'minha-conta', loadChildren: './minha-conta/minha-conta.module#MinhaContaPageModule' },
   { path: 'ajuda', loadChildren: './ajuda/ajuda.module#AjudaPageModule' },
+  { path: 'cidades', loadChildren: './cidades/cidades.module#CidadesPageModule' },
   
 ];
 

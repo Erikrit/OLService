@@ -51,6 +51,7 @@ module.exports = function(){
     consign()
         .include('controllers')
         .then('banco')
+        .then('validarDados')
         .into(app);
 
     return app;

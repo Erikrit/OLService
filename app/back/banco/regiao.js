@@ -9,16 +9,26 @@ class Regiao{
      * @param callback - função de retorno 
      */
 
-    findAll(callback){
+    findAllEstados(callback){
         try{
             this._con.query('SELECT * FROM estado', callback);
-            console.log("testando2")
+           
         } catch(error){
             console.log(error);
-            console.log("testando erro")
         }
     }
+
+findAllEstadoId(id,callback){
+    try{
+        this._con.query('select *from cidade where cidade.estado = ?', id, callback);
+       
+    } catch(error){
+        console.log(error);
+    }
 }
+
+}
+
     module.exports = function(){
        
         return Regiao;
