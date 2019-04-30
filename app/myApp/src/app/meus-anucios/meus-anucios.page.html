@@ -3,16 +3,10 @@
       <ion-buttons (click)="back()" slot="start" >
           <ion-back-button defaultHref="" class="btnTitle"></ion-back-button>
         </ion-buttons>
-            <ion-title class="title">Cidades</ion-title>
-          
+        <ion-title class="title">Meus Anucios</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-list *ngFor="let p of cidades" >
-        <ion-item >
-          <ion-label (click)='estado(p)' >{{p.nome}}
-            </ion-label>
-        </ion-item>
-    </ion-list>
+
 </ion-content>

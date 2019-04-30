@@ -1,26 +1,17 @@
 <ion-header>
   <ion-toolbar>
-      <ion-item lines="none">
-          <ion-buttons (click)="back()">
-              <ion-icon name="arrow-back"></ion-icon>
-      
-            </ion-buttons>
+      <ion-buttons (click)="back()" slot="start" >
+          <ion-back-button defaultHref="" class="btnTitle"></ion-back-button>
+        </ion-buttons>
             <ion-title class="title">Minha Conta</ion-title>
-          </ion-item>
+          
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    
-    <div>
-      <ion-card>
- 
-  <ion-text>Aqui terar a foto com o anucio do prestador</ion-text>
-  
-  </ion-card>
-</div>
-  <ion-item (click)="onClick()"> Perfil</ion-item>
-  <ion-item (click)="onClick()"> Meus Anucios</ion-item>
-  <ion-item (click)="onClick()"> FeedBacks</ion-item> 
+
+  <ion-item > Perfil</ion-item>
+  <ion-item (click)="meusAnucios()"> Meus Anucios</ion-item>
+  <ion-item (click)="feedBack()"> FeedBacks</ion-item> 
 
 </ion-content>

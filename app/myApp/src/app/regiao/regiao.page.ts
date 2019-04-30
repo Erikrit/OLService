@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams} from '@ionic/angular';
 //import { Http} from '@angular/http';
-import { Estado } from '../estado';
+import { Estado } from '../../model/estado';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { CidadesService } from '../cidades.service';
-import { Cidades } from '../cidades';
+import { CidadesService } from '../../services/cidades.service';
+import { Cidades } from '../../model/cidades';
 
 
 
@@ -57,7 +57,7 @@ export class RegiaoPage implements OnInit {
    * Quando é executado pop em uma página subsequente, volta-se para esta página, porém, este método não é carregado novamente. 
  */
   bonton() {
-    let ax =this;
+   
 this.http.get<Estado[]>("http://localhost:3000/OLService" )
 .subscribe(
   question =>{

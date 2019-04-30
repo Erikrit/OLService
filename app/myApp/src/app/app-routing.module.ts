@@ -19,7 +19,9 @@ const routes: Routes = [
   { path: 'minha-conta', loadChildren: './minha-conta/minha-conta.module#MinhaContaPageModule' },
   { path: 'ajuda', loadChildren: './ajuda/ajuda.module#AjudaPageModule' },
   { path: 'cidades', loadChildren: './cidades/cidades.module#CidadesPageModule' },
-  
+  { path: 'anucio', loadChildren: './anucio/anucio.module#AnucioPageModule' },
+  { path: 'meus-anucios', loadChildren: './meus-anucios/meus-anucios.module#MeusAnuciosPageModule' },
+  { path: 'feed-back', loadChildren: './feed-back/feed-back.module#FeedBackPageModule' },
 ];
 
 @NgModule({

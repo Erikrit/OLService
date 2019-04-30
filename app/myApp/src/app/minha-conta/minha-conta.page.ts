@@ -16,6 +16,18 @@ export class MinhaContaPage implements OnInit {
     this.navCtrl.navigateBack('');
   }
   ngOnInit() {
+
   }
+
+  feedBack(){
+    this.navCtrl.navigateForward('feed-back');
+  }
+
+  meusAnucios(){
+    this.navCtrl.navigateForward('meus-anucios');
+  }
+
+
+
 
 }

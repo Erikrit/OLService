@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Cidades } from '../cidades';
-import { Estado } from '../estado';
-import { CidadesService } from '../cidades.service';
+import { Cidades } from '../../model/cidades';
+import { Estado } from '../../model/estado';
+import { CidadesService } from '../../services/cidades.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 
@@ -33,7 +33,7 @@ export class CidadesPage implements OnInit {
 cidadesList(){
   this.estado = this.cidadeService.getDestn();
   console.log(this.estado,"deu certo");
-  this.http.get<Cidades[]>("http://localhost:3000/OLService/codigoEstado/"+this.estado.CodigoEstado)
+  this.http.get<Cidades[]>("http://localhost:3000/OLService/codigoEstado/"+this.estado.codigoEstado)
   .subscribe(
     question =>{
       console.log(question);
@@ -41,8 +41,7 @@ cidadesList(){
     
     },
     (err: HttpErrorResponse) =>{
-      this.load.dismiss();
-      this.alert.present();
+      console.log(err.message);
     }
   );
     

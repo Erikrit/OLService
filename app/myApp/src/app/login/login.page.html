@@ -2,13 +2,11 @@
     
       <ion-header>
           <ion-toolbar>
-              <ion-item lines="none">
-                  <ion-buttons (click)="back()">
-                      <ion-icon name="arrow-back"></ion-icon>
-              
-                    </ion-buttons>
+              <ion-buttons (click)="back()" slot="start" >
+                  <ion-back-button defaultHref="" class="btnTitle"></ion-back-button>
+                </ion-buttons>
                     <ion-title class="title">Login</ion-title>
-                  </ion-item>
+                
             
           </ion-toolbar>
         </ion-header>
@@ -30,7 +28,7 @@
         </div> 
         <div class="btnCadastro">
             <ion-button> Facebook</ion-button>
-            <ion-button> Google</ion-button>
+            <ion-button (click)="googleM()"> Google</ion-button>
             <ion-button> Cadastrar
             </ion-button>
         </div>

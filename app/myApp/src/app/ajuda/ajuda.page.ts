@@ -11,5 +11,8 @@ export class AjudaPage implements OnInit {
 
   ngOnInit() {
   }
+  slidesEfect = {
+    effect:'flip'
+  }
 
 }

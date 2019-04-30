@@ -4,8 +4,8 @@ export class Cidades {
     estado:Number;
 
     constructor(){
-        this.id=1;
-        this.estado=2;
+        this.id=0;
+        this.estado=0;
         this.nome='';
 
     }

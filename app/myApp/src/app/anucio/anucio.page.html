@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    
+      <ion-buttons (click)="back()" slot="start" >
+          <ion-back-button defaultHref="" class="btnTitle"></ion-back-button>
+        </ion-buttons>
+      <ion-title class="title">Anucio</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item lines="none">
+  <ion-label class="txtFoto">Adicionar Fotos</ion-label>
+  </ion-item>
+  <div>
+    <ion-slides class='slides' page='true' [options]='slidesEfect' 	scrollbar='true'>
+      <ion-slide>
+        <ion-card class='card'(click)="presentActionSheet()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+        <ion-card class='card' (click)="metodoCamera()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+        <ion-card class='card' (click)="metodoCamera()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+        <ion-card class='card' (click)="metodoCamera()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+      </ion-slide> 
+      <ion-slide>
+        <ion-card class='card' (click)="metodoCamera()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+        <ion-card class='card' (click)="metodoCamera()"><ion-icon name="add" size="large"></ion-icon></ion-card>
+        </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-list>
+      <ion-item lines="none">
+          <ion-label position="floating">Title Anucio</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="floating"> Descrição </ion-label>
+    <ion-textarea class="descricao" spellcheck='true' ></ion-textarea>
+  </ion-item>
+
+
+ <ion-item lines="none">
+  <ion-label> Cidade </ion-label>
+</ion-item>
+  
+<ion-select placeholder="Selecione a Estado"  [interfaceOptions]="customActionSheetOptions" interface="action-sheet"[(ngModel)]="estadoSelect "  >
+  <ion-select-option *ngFor="let p of estados" [value]="(p)"   >
+    {{p.nome}}
+  </ion-select-option>
+  </ion-select>
+
+  <ion-select  placeholder="Selecione a cidade" interface="action-sheet" (click)="presentLoadingCidade()"  >
+      <ion-select-option *ngFor="let c of cidades">
+          {{c.nome}}
+      </ion-select-option>
+      </ion-select>
+   
+      <ion-item lines="none">
+        <ion-label> Categoria </ion-label>
+      </ion-item>
+      
+      <ion-select placeholder="Selecione a Categoria" interface="action-sheet" [(ngModel)]="categoriaSelect">
+        <ion-select-option *ngFor="let cat of categoria" [value]="(cat)" >
+            {{cat.nome}}
+        </ion-select-option>
+       
+        </ion-select>
+        
+        <ion-select  placeholder="Selecione a sube Categoria" interface="action-sheet" (click)="presentLoadingCategoria()">
+          <ion-select-option *ngFor="let subCat of subCategoria">
+              {{subCat.nome}}
+          </ion-select-option>
+         
+          </ion-select>
+        
+      <ion-item lines="none">
+          <ion-label  position="floating">Referencia</ion-label>
+          <ion-label position="floating">Referencia</ion-label>
+        </ion-item>
+        <div>
+          <ion-item>
+        <ion-input class="referenciNome" placeholder="Nome"></ion-input>
+          <ion-input type="number" class="referenciTelefone" placeholder="telefone"></ion-input>
+        </ion-item>
+        </div>
+        <div class="bottonAv">
+          <ion-button> Anunciar </ion-button>
+        </div>
+      </ion-list>
+
+ <ion-item lines="none"></ion-item>
+</ion-content>

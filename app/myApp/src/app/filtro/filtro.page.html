@@ -2,13 +2,11 @@
   <ion-toolbar>
     
    
-    <ion-item lines="none">
-    <ion-buttons (click)="back()">
-        <ion-icon name="arrow-back"></ion-icon>
-
-      </ion-buttons>
+      <ion-buttons (click)="back()" slot="start" >
+          <ion-back-button defaultHref="" class="btnTitle"></ion-back-button>
+        </ion-buttons>
       <ion-title class="title">Filtro</ion-title>
-    </ion-item>
+   
     
   </ion-toolbar>
 </ion-header>
@@ -18,14 +16,14 @@
   <div class='filtro'>
     <ion-item >
     <ion-label>Valor Minimo:</ion-label>
-    <ion-input>
+    <ion-input type="number">
   </ion-input>
 </ion-item>
   </div>
   <div class='filtro'>
     <ion-item >
   <ion-label>Valor Maximo:</ion-label>
-    <ion-input>
+    <ion-input type="number">
   </ion-input>
 </ion-item>
 </div>

@@ -16,6 +16,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Inserir-Anucio',
+      url: '/anucio',
+      icon: 'help-circle-outline'
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'contact'
