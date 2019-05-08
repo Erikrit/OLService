@@ -19,6 +19,7 @@ var express = require('express');
 */
 var consign = require('consign');
 
+
 /** body-parser:
  *  Permite manipular corpos da requisição http disponível sob a propriedade req.body.
  *  Nota Como a forma do req.body é baseada na entrada controlada pelo usuário, todas as 

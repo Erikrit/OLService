@@ -29,7 +29,7 @@
   </div>
   <ion-list>
       <ion-item lines="none">
-          <ion-label position="floating">Title Anucio</ion-label>
+          <ion-label position="floating">Titlee Anucio</ion-label>
           <ion-input></ion-input>
         </ion-item>
 
@@ -43,7 +43,7 @@
   <ion-label> Cidade </ion-label>
 </ion-item>
   
-<ion-select placeholder="Selecione a Estado"  [interfaceOptions]="customActionSheetOptions" interface="action-sheet"[(ngModel)]="estadoSelect "  >
+<ion-select placeholder="Selecione a Estado" interface="action-sheet"[(ngModel)]="estadoSelect "  >
   <ion-select-option *ngFor="let p of estados" [value]="(p)"   >
     {{p.nome}}
   </ion-select-option>

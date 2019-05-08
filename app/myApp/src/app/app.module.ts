@@ -10,6 +10,10 @@ import {HttpClientModule} from '@angular/common/http';
 import {Camera} from '@ionic-native/camera/ngx';
 import {File} from '@ionic-native/file/ngx';
 import {GooglePlus} from '@ionic-native/google-plus/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import {IonicStorageModule} from '@ionic/storage';
+import {WebView} from '@ionic-native/ionic-webview/ngx'
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,11 +22,12 @@ import {GooglePlus} from '@ionic-native/google-plus/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera, File, GooglePlus
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Camera, File, GooglePlus,FilePath,WebView
   ],
   bootstrap: [AppComponent]
 })

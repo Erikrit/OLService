@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { NavController, AlertController, LoadingController,ActionSheetController } from '@ionic/angular';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Estado } from '../../model/estado';
 import { Cidades } from '../../model/cidades';
-import {Camera,CameraOptions} from '@ionic-native/camera/ngx'
+import {Camera,CameraOptions, PictureSourceType} from '@ionic-native/camera/ngx'
 import { Categoria } from 'src/model/categoria';
 import { SubCategoria } from 'src/model/sub-categoria';
+import { Platform } from '@ionic/angular';
 import {File} from '@ionic-native/file/ngx'
+import { FilePath } from '@ionic-native/file-path/ngx';
+import {Storage} from '@ionic/storage'
+import {WebView} from '@ionic-native/ionic-webview/ngx'
 
 @Component({
   selector: 'app-anucio',
@@ -17,6 +21,11 @@ export class AnucioPage implements OnInit {
 
 
   ngOnInit(): void {
+    this.platform.ready().then(() => {
+
+      this.files();
+
+    })
     this.bonton();
     
     this.listaCategoria();
@@ -26,8 +35,9 @@ export class AnucioPage implements OnInit {
   slidesEfect = {
     effect:'flip'
   }
-    
 
+    imagem:any = [];
+      STORAGE_KEY : 'my_img';
      estadoSelect : Estado; // Foi criado para pegar a cidade vindo do fronte-end
      
      categoriaSelect:Categoria; // Foi criado para pegar a categoria vindo do fronte-end
@@ -57,7 +67,13 @@ export class AnucioPage implements OnInit {
       private alertCtrl: AlertController,
       private loadingController: LoadingController,
        private actionSheetController: ActionSheetController,
-       private file: File
+       private file: File,
+       private platform :Platform,
+       private filePath: FilePath,
+       private storage:Storage,
+       private webView: WebView,
+       private ref :ChangeDetectorRef
+
   ) {
     this.validarCategoria=false;
     this.validarCidades = false;
@@ -87,7 +103,7 @@ async presentActionSheet() {
       role: 'destructive',
       icon: 'folder',
       handler: () => {
-        this.arquivoFile();
+        this.metodoCamera(this.camera.PictureSourceType.PHOTOLIBRARY);
         
       }
     }, {
@@ -96,7 +112,7 @@ async presentActionSheet() {
       icon: 'camera',
 
       handler: () => {
-        this.metodoCamera();
+        this.metodoCamera(this.camera.PictureSourceType.CAMERA);
         
       }
     },{
@@ -107,10 +123,35 @@ async presentActionSheet() {
 
 }
 
-arquivoFile(){
-  this.file.checkDir(this.file.dataDirectory, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
-  console.log('Directory doesn'));
+files() {
+  this.storage.get(this.STORAGE_KEY).then(images =>{
+    if(images){
+      let arr = JSON.parse(images);
+      this.imagem=[];
+      for(let img of arr){
+        let fileP = this.file.dataDirectory+img;
+        let resP = this.pathForImg(fileP);
+        this.imagem.push({name:img, path:resP, filePath:fileP});
+      }
+    }
+
+  });
+ 
 }
+
+  pathForImg(img){
+    if(img ===null){
+
+      return ''
+    }else{
+      let converted = this.webView.convertFileSrc(img);
+      return converted;
+    }
+
+  }
+
+
+
   bonton() {
 this.http.get<Estado[]>("http://localhost:3000/OLService" )
 .subscribe(
@@ -226,21 +267,67 @@ back(){
   this.navCtrl.navigateBack('');
 }
 
-metodoCamera(){
+metodoCamera(sourceType:PictureSourceType){
 const options: CameraOptions = {
   quality: 100,
-  destinationType: this.camera.DestinationType.FILE_URI,
-  encodingType: this.camera.EncodingType.JPEG,
-  mediaType: this.camera.MediaType.PICTURE
+  //destinationType: this.camera.DestinationType.FILE_URI,
+  //encodingType: this.camera.EncodingType.JPEG,
+ // mediaType: this.camera.MediaType.PICTURE
+ sourceType:sourceType,
+ saveToPhotoAlbum: false,
+ correctOrientation:true
 }
 
-this.camera.getPicture(options).then((imageData) => {
+this.camera.getPicture(options).then(imageData => {
  // imageData is either a base64 encoded string or a file URI
  // If it's base64 (DATA_URL):
- let base64Image = 'data:image/jpeg;base64,' + imageData;
+ var currentName = imageData.substr(imageData.lastIndexOf('/')+1)
+ var currentPath = imageData.substr(0,imageData.lastIndexOf('/')+1)
+ //let base64Image = 'data:image/jpeg;base64,' + imageData;
+this.copyFileToLocalDir(currentPath,currentName,this.createFileName());
 }, (err) => {
  // Handle error
 });
 }
+copyFileToLocalDir(namePath,correntName, newFileName ){
+  this.file.copyFile(namePath,correntName,this.file.dataDirectory, newFileName).then(_ =>{
+    this.updateStoredImg(newFileName);
+
+  },err =>{
+});
+}
+
+createFileName(){
+  var dat = new Date(),
+       n = dat.getTime(),
+       newFileName = n+".jpg";
+       return newFileName;
+}
+
+updateStoredImg(name){
+this.storage.get(this.STORAGE_KEY).then(images =>{
+  let arr = JSON.parse(images);
+  if(!arr){
+    let newImages = [name];
+    this.storage.set(this.STORAGE_KEY, JSON.stringify(newImages));
+  }else{
+    arr.push(name);
+    this.storage.set(this.STORAGE_KEY, JSON.stringify(arr));
+
+  }
+
+  let filePath = this.file.dataDirectory+name;
+  let resPath = this.pathForImg(filePath);
+
+  let newEntry = {
+    name: name,
+    path:resPath,
+    filePath:filePath
+  };
+  this.imagem = [newEntry, this.imagem];
+  this.ref.detectChanges();
+})
+}
+
 
 }
